@@ -19,8 +19,18 @@
  # bastion host ingress rule to allow ssh from public
  resource "aws_security_group_rule" "bastion_laptop" {
   type = "ingress"
-  security_group_id = local.bastion_sg_id  # bastion alb sg
+  security_group_id = local.bastion_sg_id  # bastion sg id
   cidr_blocks =  ["0.0.0.0/0"]
+  from_port = 22
+  protocol = "tcp"
+  to_port = 22
+ }
+
+  # mongodb allowing bastion host
+  resource "aws_security_group_rule" "bastion_mongodb" {
+  type = "ingress"
+  security_group_id = local.mongodb_sg_id  # mongodb sg_id 
+  source_security_group_id  = local.bastion_sg_id
   from_port = 22
   protocol = "tcp"
   to_port = 22
