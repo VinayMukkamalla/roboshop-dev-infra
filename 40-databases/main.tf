@@ -42,15 +42,15 @@ resource "terraform_data" "mongodb" {
 }
 
 
-resource "aws_instance" "mongodb" {
+resource "aws_instance" "redis" {
   ami = local.ami
   instance_type = "t3.micro"
-  vpc_security_group_ids = [local.mongodb_sg_id]
+  vpc_security_group_ids = [local.redis_sg_id]
   subnet_id = local.subnet_id
   tags = merge(
     local.common_tags,
     {
-        Name = "${local.common_name_suffix}-mongodb"
+        Name = "${local.common_name_suffix}-redis"
     }
 
   )
