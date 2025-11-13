@@ -1,5 +1,6 @@
 component = $1
 
-ansible-pull -U -e component = $1 main.yaml
+dnf install ansible -y
+ansible-pull -U https://github.com/VinayMukkamalla/ansible-roboshop-roles-tf.git -e component = $1 main.yaml
 
 #
