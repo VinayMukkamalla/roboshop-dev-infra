@@ -57,7 +57,7 @@
  }
 
  # mysql allowing bastion host
-  resource "aws_security_group_rule" "bastion_rabbitmq" {
+  resource "aws_security_group_rule" "bastion_mysql" {
   type = "ingress"
   security_group_id = local.mysql_sg_id  # mysql sg_id 
   source_security_group_id  = local.bastion_sg_id
