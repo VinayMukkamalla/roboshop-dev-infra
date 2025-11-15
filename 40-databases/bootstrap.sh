@@ -6,21 +6,21 @@ dnf install ansible -y
 # as ansible-pull is not respecting our inventory.ini we are using alternative way through shell scripting
 
 REPO_URL=https://github.com/VinayMukkamalla/ansible-roboshop-roles-tf.git
-ANSIBLE_DIR=/opt/roboshop/ansible
-REPO_DIR=ansible-roboshop-roles-tf
+REPO_DIR=/opt/roboshop/ansible
+ANSIBLE_DIR=ansible-roboshop-roles-tf
 
-mkdir -p /var/log/ansible/
-touch /var/log/ansible/ansible.log
+mkdir -p $REPO_DIR
+mkdir -p /var/log/roboshop/
+touch /var/log/roboshop/ansible.log
 
-mkdir -p $ANSIBLE_DIR
-cd $ANSIBLE_DIR
+cd $REPO_DIR
 
-if [ -d $REPO_DIR ]; then
-    cd $$REPO_DIR
+if [ -d $ANSIBLE_DIR ]; then
+    cd $$ANSIBLE_DIR
     git pull
 else
     git clone $REPO_URL
-    cd $REPO_DIR
+    cd $ANSIBLE_DIR
 fi
 
 ansible-playbook -e component=$component main.yaml
