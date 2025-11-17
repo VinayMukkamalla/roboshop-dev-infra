@@ -6,6 +6,7 @@ locals {
   mysql_sg_id = data.aws_ssm_parameter.mysql_sg_id.value
   ami = data.aws_ami.aminame.id
   subnet_id = split("," , data.aws_ssm_parameter.database_subnet_ids.value)[0]
+  zone_id = data.aws_route53_zone.hosted_area.zone_id
 
   common_tags = {
 
