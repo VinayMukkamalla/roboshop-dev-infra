@@ -79,7 +79,7 @@
   type = "ingress"
   security_group_id = local.mongodb_sg_id  # mongodb sg_id 
   source_security_group_id  = local.catalogue_sg_id
-  from_port = 22
+  from_port = 27017
   protocol = "tcp"
-  to_port = 22
+  to_port = 27017
  }
