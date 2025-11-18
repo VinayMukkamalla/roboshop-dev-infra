@@ -165,3 +165,26 @@ resource "aws_autoscaling_policy" "catalogue" {
     target_value = 75.0
   }
 }
+
+resource "aws_lb_listener_rule" "catalogue" {
+  listener_arn = local.backend_alb_listener_arn
+  priority     = 10
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.catalogue.arn
+  }
+
+  # if you want to specify host path
+  # condition {
+  #   path_pattern {
+  #     values = ["/static/*"]
+  #   }
+  # }
+
+  condition {
+    host_header {
+      values = ["catalogue.backend-alb-${var.environment}.${var.domain}"]
+    }
+  }
+}
