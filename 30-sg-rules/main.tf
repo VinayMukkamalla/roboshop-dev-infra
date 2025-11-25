@@ -55,7 +55,7 @@
 
   resource "aws_security_group_rule" "shipping_mysql" {
     type = "ingress"
-    security_group_id = local.redis_sg_id  # redis sg_id 
+    security_group_id = local.mysql_sg_id  # redis sg_id 
     source_security_group_id  = local.shipping_sg_id  # shipping
     from_port = 3306
     protocol = "tcp"
@@ -167,6 +167,15 @@
   resource "aws_security_group_rule" "bastion_payment" {
     type = "ingress"
     security_group_id = local.payment_sg_id  # payment 
+    source_security_group_id  = local.bastion_sg_id
+    from_port = 22
+    protocol = "tcp"
+    to_port = 22
+ }
+
+  resource "aws_security_group_rule" "bastion_frontend" {
+    type = "ingress"
+    security_group_id = local.frontend_sg_id  # frontend 
     source_security_group_id  = local.bastion_sg_id
     from_port = 22
     protocol = "tcp"
