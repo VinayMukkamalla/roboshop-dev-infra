@@ -4,16 +4,9 @@ component=$1
 env=$2
 
 
+
+
 dnf install ansible -y
-
-if [ "$component" == "payment" ]; then
-  echo "[INFO] Fixing Python deps for payment"
-  sudo dnf remove -y python3-cryptography python3-paramiko || true
-  sudo dnf install -y python3-cryptography python3-paramiko python3 python3-devel
-
-  sudo find /usr/lib/python3.9/site-packages -name "__pycache__" -exec rm -rf {} +
-  sudo rm -rf ~/.cache/pip
-fi
 
 # ansible-pull -U https://github.com/VinayMukkamalla/ansible-roboshop-roles-tf.git -e component=$1 main.yaml 
 # as ansible-pull is not respecting our inventory.ini we are using alternative way through shell scripting
