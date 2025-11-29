@@ -10,7 +10,10 @@ variable "rule_priority" {
 
 variable "components" {
   default = {
-
+    
+    frontend = {
+        rule_priority = 10
+    }
     catalogue = {
         rule_priority = 10
     }
@@ -26,8 +29,6 @@ variable "components" {
     payment = {
         rule_priority = 50
     }
-    frontend = {
-        rule_priority = 10
-    }
+    
   }
 }
