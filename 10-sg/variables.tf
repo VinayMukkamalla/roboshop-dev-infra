@@ -28,7 +28,10 @@ variable "sg_names" {
       "frontend_alb",
 
       # backend-ALB
-      "backend_alb"
+      "backend_alb",
+
+      #openvpn
+      "open_vpn"
 
 
     ]
